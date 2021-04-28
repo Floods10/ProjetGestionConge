@@ -53,12 +53,14 @@ public class CongeRestController {
 
 	// all conges
 	@GetMapping("")
+	@JsonView(Views.Common.class)
 	public List<Conge> getAllConge() {
 		return congeRepository.findAll();
 	}
 
 	// findById
 	@GetMapping("/{id}")
+	@JsonView(Views.Common.class)
 	public Conge getById(@PathVariable("id") Integer id) {
 		Optional<Conge> opt = congeRepository.findById(id);
 		if (!opt.isPresent()) {
@@ -93,6 +95,7 @@ public class CongeRestController {
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
+	//@Valid
 	public Conge postConge( @RequestBody Conge conge, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new RuntimeException();
