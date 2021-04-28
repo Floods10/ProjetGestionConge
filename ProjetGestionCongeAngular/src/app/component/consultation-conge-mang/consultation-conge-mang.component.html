@@ -1,1 +1,41 @@
-<h1>VALIDATION DES CONGES</h1>
+<h1 class="text-center">Menu manager</h1>
+
+<div class="card">
+  <div class="card-header">Validation des congés</div>
+  <div class="card-body">
+    <table class="table">
+      <tr>
+        <th class="">Demandeur</th>
+        <th>Date demande</th>
+        <th>Période</th>
+        <th>Type</th>
+        <th>Motif</th>
+        <th>Statut</th>
+      </tr>
+      <tr *ngFor="let conge of conges">
+        <td>{{ conge.demandeur.mail }}</td>
+        <td>
+          <input type="date" value="{{ conge.dateDemande }}" disabled />
+        </td>
+        <td>
+          <input type="date" value="{{ conge.dateDebut }}" disabled />
+          <br />
+          <input type="date" value="{{ conge.dateFin }}" disabled />
+        </td>
+        <td class="">
+          <button type="button" class="btn btn-info">
+            {{ conge.typeConge }}
+          </button>
+        </td>
+        <td>
+          <input type="text" value="{{ conge.motifConge }}" disabled />
+        </td>
+        <td class="">
+          <button type="button" class="btn btn-warning">
+            {{ conge.statutDemande }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
