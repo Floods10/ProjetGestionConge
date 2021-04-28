@@ -3,6 +3,7 @@ import { EnumRole } from "./enum-role.enum";
 import { Service } from "./service";
 
 export class Utilisateur {
+
   public constructor(
     private _nom: string = '',
     private _mail: string = '',
@@ -10,7 +11,7 @@ export class Utilisateur {
     private _role: EnumRole = EnumRole.ROLE_EMPLOYE,
     private _service?: Service,
     private _manager?: Utilisateur,
-    private _conge?: Conge[],
+    private _conge?: Conge[]
     ) {}
 
 
