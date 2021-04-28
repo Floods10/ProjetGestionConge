@@ -1,3 +1,3 @@
 export enum EnumRole {
-  employe, manager
+  ROLE_ADMIN, ROLE_EMPLOYE, ROLE_MANAGER
 }

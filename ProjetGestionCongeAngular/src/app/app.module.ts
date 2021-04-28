@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,6 +9,9 @@ import { ValidationCongeComponent } from './component/validation-conge/validatio
 import { ConsultationCongeEmpComponent } from './component/consultation-conge-emp/consultation-conge-emp.component';
 import { ConsultationCongeMangComponent } from './component/consultation-conge-mang/consultation-conge-mang.component';
 import { HomeComponent } from './component/home/home.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,8 @@ import { HomeComponent } from './component/home/home.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

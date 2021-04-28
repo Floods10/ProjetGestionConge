@@ -7,7 +7,7 @@ export class Utilisateur {
     private _nom: string = '',
     private _mail: string = '',
     private _mdp: string = '',
-    private _role: EnumRole = EnumRole.employe,
+    private _role: EnumRole = EnumRole.ROLE_EMPLOYE,
     private _service?: Service,
     private _manager?: Utilisateur,
     private _conge?: Conge[],
