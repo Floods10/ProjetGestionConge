@@ -53,12 +53,14 @@ public class CongeRestController {
 
 	// all conges
 	@GetMapping("")
+	@JsonView(Views.Common.class)
 	public List<Conge> getAllConge() {
 		return congeRepository.findAll();
 	}
 
 	// findById
 	@GetMapping("/{id}")
+	@JsonView(Views.Common.class)
 	public Conge getById(@PathVariable("id") Integer id) {
 		Optional<Conge> opt = congeRepository.findById(id);
 		if (!opt.isPresent()) {
@@ -70,29 +72,20 @@ public class CongeRestController {
 	// findByDemandeur	
 	@GetMapping("/{id}/demandeur")
 	@JsonView(Views.Common.class)
-	public Conge getCongeByDemandeur(@PathVariable("id") Integer id) {
-		Optional<Conge> opt = congeRepository.findByDemandeur(id);
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new RuntimeException();
-		}
+	public List<Conge> getCongeByDemandeur(@PathVariable("id") Integer id) {
+		return congeRepository.findByDemandeur(id);
 	}
 
 	@GetMapping("/{dateDebut}/{dateFin}")
 	@JsonView(Views.Common.class)
-	public Conge getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
-		Optional<Conge> opt = congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new RuntimeException();
-		}
+	public List<Conge> getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
+		return congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
 	}
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	@JsonView(Views.Common.class)
+	//@Valid
 	public Conge postConge( @RequestBody Conge conge, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new RuntimeException();
