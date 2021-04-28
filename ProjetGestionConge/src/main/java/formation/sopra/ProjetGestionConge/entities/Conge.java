@@ -1,10 +1,13 @@
 package formation.sopra.ProjetGestionConge.entities;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +24,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name = "conge")
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//@Cacheable
+//@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 100, allocationSize = 1)
 public class Conge {
 
@@ -39,12 +42,25 @@ public class Conge {
 	@Column(name = "date_fin")
 	private LocalDate dateFin;
 	private double duree;
+	@Column(name = "motif_conge")
 	private String motifConge;
+	@Column(name = "type_conge")
+	@Enumerated(EnumType.STRING)
 	private TypeConge typeConge;
+	@Column(name = "statut_demande")
+	@Enumerated(EnumType.STRING)
 	private StatutDemande statutDemande;
-	private String commentaire;
+	@Column(name = "commentaire_refuse")
+	private String commentaireSiRefuse;
 	@Version
 	private Integer version;
+	
+	
+	public Conge() {
+	}
+	
+	
+
 	public int getId() {
 		return id;
 	}
@@ -76,10 +92,10 @@ public class Conge {
 		this.dateFin = dateFin;
 	}
 	public double getDuree() {
-		return duree;
+		return Period.between(this.dateDebut, this.dateFin).getDays();
 	}
-	public void setDuree(double duree) {
-		this.duree = duree;
+	public void setDuree() {
+		this.duree = getDuree();
 	}
 	public String getMotifConge() {
 		return motifConge;
@@ -101,11 +117,11 @@ public class Conge {
 	}
 	
 	
-	public String getCommentaire() {
-		return commentaire;
+	public String getCommentaireSiRefuse() {
+		return commentaireSiRefuse;
 	}
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+	public void setCommentaireSiRefuse(String commentaireSiRefuse) {
+		this.commentaireSiRefuse = commentaireSiRefuse;
 	}
 	public Integer getVersion() {
 		return version;

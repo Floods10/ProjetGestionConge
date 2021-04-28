@@ -27,7 +27,7 @@ public class Console implements CommandLineRunner {
 
 	private void initPasswordDataBase() {
 		utilisateurRepository.findAll().stream().forEach(utilisateur -> {
-			utilisateur.setPassword(passwordEncoder.encode(utilisateur.getMail()));
+			utilisateur.setMdp(passwordEncoder.encode(utilisateur.getMail()));
 			utilisateurRepository.save(utilisateur);
 		});
 	}
