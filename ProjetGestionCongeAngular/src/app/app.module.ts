@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -24,8 +25,9 @@ import { routes } from './routes';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
     RouterModule.forRoot(routes),
+    FormsModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

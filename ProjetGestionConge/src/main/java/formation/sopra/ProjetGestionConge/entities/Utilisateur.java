@@ -6,13 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import formation.sopra.ProjetGestionConge.restController.Views;
+
 
 @Entity
 @Table(name = "utilisateur")
@@ -20,28 +28,40 @@ import javax.persistence.Version;
 public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUser")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Column(name = "nom", length = 100, unique = false, nullable = false)
+	@JsonView(Views.CongeWithDemandeur.class)
 	private String nom; 
 	
 	@Column(name = "mail", length = 100, unique = true, nullable = false)
+	@JsonView(Views.CongeWithDemandeur.class)
 	private String mail; 
 	
 	@Column(name = "mdp", length = 200, nullable = false)
+	@JsonView(Views.CongeWithDemandeur.class)
 	private String mdp;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
+	@JsonView(Views.CongeWithDemandeur.class)
 	private Role role;
 	
-	@Column(name = "service")
+	@ManyToOne()
+	@JoinColumn(name = "id_service", foreignKey = @ForeignKey (name = "utilisateur_id_service_fk"))
+	@JsonView(Views.CongeWithDemandeur.class)
 	private Service service;
 	
-	@Column(name = "manager")
+	@ManyToOne()
+	@JoinColumn(name = "id_manager", foreignKey = @ForeignKey (name = "utilisateur_id_manager_fk"))
 	private Utilisateur manager;
 	
+	@OneToMany(mappedBy = "id")
+	private List<Utilisateur> listeEmployes;
+	
 	@OneToMany(mappedBy = "demandeur")
+	@JsonView(Views.CongeWithDemandeur.class)
 	private List<Conge> conges;
 	
 	@Version

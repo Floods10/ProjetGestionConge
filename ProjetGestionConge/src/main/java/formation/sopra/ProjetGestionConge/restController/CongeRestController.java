@@ -59,7 +59,7 @@ public class CongeRestController {
 
 	// findById
 	@GetMapping("/{id}")
-	public Conge getById(@RequestParam Integer id) {
+	public Conge getById(@PathVariable("id") Integer id) {
 		Optional<Conge> opt = congeRepository.findById(id);
 		if (!opt.isPresent()) {
 			throw new RuntimeException();
@@ -69,8 +69,9 @@ public class CongeRestController {
 	}
 	// findByDemandeur	
 	@GetMapping("/{id}/demandeur")
+	@JsonView(Views.Common.class)
 	public Conge getCongeByDemandeur(@PathVariable("id") Integer id) {
-		Optional<Conge> opt = congeRepository.findById(id);
+		Optional<Conge> opt = congeRepository.findByDemandeur(id);
 		if (opt.isPresent()) {
 			return opt.get();
 		} else {
@@ -79,6 +80,7 @@ public class CongeRestController {
 	}
 
 	@GetMapping("/{dateDebut}/{dateFin}")
+	@JsonView(Views.Common.class)
 	public Conge getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
 		Optional<Conge> opt = congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
 		if (opt.isPresent()) {
@@ -90,8 +92,8 @@ public class CongeRestController {
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	
-	public Conge postConge(@Valid @RequestBody Conge conge, BindingResult br) {
+	@JsonView(Views.Common.class)
+	public Conge postConge( @RequestBody Conge conge, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new RuntimeException();
 		}
@@ -100,6 +102,7 @@ public class CongeRestController {
 
 	//update
 	@PatchMapping("/{id}")
+	@JsonView(Views.Common.class)
 	public Conge patchConge(@RequestBody Map<String, Object> fields, @PathVariable("id") Integer id) {
 		Optional<Conge> opt = congeRepository.findById(id);
 		if (opt.isPresent()) {

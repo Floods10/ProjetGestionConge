@@ -21,6 +21,10 @@ import javax.persistence.Version;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import formation.sopra.ProjetGestionConge.restController.Views;
+
 
 @Entity
 @Table(name = "conge")
@@ -31,27 +35,47 @@ public class Conge {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
+	@JsonView(Views.Common.class)
 	private int id;
+	
 	@ManyToOne
-	@JoinColumn(name = "id_utilisateur", foreignKey = @ForeignKey(name = "conge_id_utilisateur_fk"))
+	@JoinColumn(name = "id_demandeur", foreignKey = @ForeignKey(name = "conge_id_utilisateur_fk"))
+	@JsonView(Views.Common.class)
 	private Utilisateur demandeur;
+	
 	@Column(name = "date_demande")
+	@JsonView(Views.Common.class)
 	private LocalDate dateDemande;
+	
 	@Column(name = "date_debut")
+	@JsonView(Views.Common.class)
 	private LocalDate dateDebut;
+	
 	@Column(name = "date_fin")
+	@JsonView(Views.Common.class)
 	private LocalDate dateFin;
+	
+	@JsonView(Views.Common.class)
 	private double duree;
+	
 	@Column(name = "motif_conge")
+	@JsonView(Views.Common.class)
 	private String motifConge;
+	
 	@Column(name = "type_conge")
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Common.class)
 	private TypeConge typeConge;
+	
 	@Column(name = "statut_demande")
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Common.class)
 	private StatutDemande statutDemande;
+	
 	@Column(name = "commentaire_refuse")
+	@JsonView(Views.Common.class)
 	private String commentaireSiRefuse;
+	
 	@Version
 	private Integer version;
 	

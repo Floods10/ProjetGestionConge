@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -27,10 +28,10 @@ public class Service {
 	@Column(name = "adresse", length = 200, unique = true, nullable = true)
 	private String adresse;
 	
-	@Column(name = "managerPrincipal", length = 20, unique = false, nullable = false)
+	@OneToOne()
 	private Utilisateur managerPrincipal;
 	
-	@OneToMany(mappedBy = "mail")
+	@OneToMany(mappedBy = "id")
 	private List<Utilisateur> listeEmployes;
 	
 	@Version

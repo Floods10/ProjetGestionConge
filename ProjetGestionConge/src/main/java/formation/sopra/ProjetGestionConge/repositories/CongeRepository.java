@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import formation.sopra.ProjetGestionConge.entities.Conge;
 
@@ -12,8 +13,11 @@ import formation.sopra.ProjetGestionConge.entities.Conge;
 
 public interface CongeRepository extends JpaRepository<Conge, Integer>{
 	
-
-@Query("select c from Conge c where c.dateDebut>:dateDebut and c.dateFin<:dateFin"  )
+	
+@Query("select c from Conge c where (c.dateDebut BETWEEN :dateDebut AND :dateFin)")
 public Optional<Conge> getCongeEntreDeuxDates(LocalDate dateDebut, LocalDate dateFin);
+
+@Query("select c from Conge c where c.demandeur.id=:id")
+public Optional<Conge> findByDemandeur(@Param("id") Integer id);
 
 }
