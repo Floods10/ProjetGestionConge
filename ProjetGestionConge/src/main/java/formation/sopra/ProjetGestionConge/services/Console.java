@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import formation.sopra.ProjetGestionConge.repositories.UtilisateurRepository;
+
 
 
 @Service
