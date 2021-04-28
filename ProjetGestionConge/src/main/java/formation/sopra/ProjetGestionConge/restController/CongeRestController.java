@@ -72,13 +72,8 @@ public class CongeRestController {
 	// findByDemandeur	
 	@GetMapping("/{id}/demandeur")
 	@JsonView(Views.Common.class)
-	public Conge getCongeByDemandeur(@PathVariable("id") Integer id) {
-		Optional<Conge> opt = congeRepository.findByDemandeur(id);
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new RuntimeException();
-		}
+	public List<Conge> getCongeByDemandeur(@PathVariable("id") Integer id) {
+		return congeRepository.findByDemandeur(id);
 	}
 
 	@GetMapping("/{dateDebut}/{dateFin}")
