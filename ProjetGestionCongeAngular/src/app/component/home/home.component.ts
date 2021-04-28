@@ -1,4 +1,6 @@
-import { Utilisateur } from './../../service/utilisateur';
+import { element } from 'protractor';
+import { EnumRole } from './../../model/enum-role.enum';
+import { Utilisateur } from './../../model/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   nom = '';
-  utilisateur: Utilisateur;
+  utilisateur: Utilisateur = new Utilisateur();
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   isVisible(): boolean {
-    if(utilisateur)
+    return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? false : true;
   }
 
 }
