@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import formation.sopra.ProjetGestionConge.entities.Utilisateur;
+import formation.sopra.ProjetGestionConge.repositories.UtilisateurRepository;
 
 
 @Service
@@ -19,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-		Optional<Utilisateur> opt = utilisateurRepository.findByUtilisateur(mail);
+		Optional<Utilisateur> opt = utilisateurRepository.findByMail(mail);
 		if (opt.isPresent()) {
 			return new CustomUserDetails(opt.get());
 		}

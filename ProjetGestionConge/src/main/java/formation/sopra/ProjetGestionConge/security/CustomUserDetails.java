@@ -28,20 +28,20 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		utilisateur.getRoles().stream().forEach(rl -> {
-			authorities.add(new SimpleGrantedAuthority(rl.getRole().toString()));
-		});
+		
+			authorities.add(new SimpleGrantedAuthority(utilisateur.getRole().toString()));
+		
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		return utilisateur.getPassword();
+		return utilisateur.getMdp();
 	}
 
 	@Override
 	public String getUsername() {
-		return utilisateur.getUtilisateur();
+		return utilisateur.getMail();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return utilisateur.isEnable();
+		return true;
 	}
 
 }
