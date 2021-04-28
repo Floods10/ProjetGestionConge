@@ -78,13 +78,8 @@ public class CongeRestController {
 
 	@GetMapping("/{dateDebut}/{dateFin}")
 	@JsonView(Views.Common.class)
-	public Conge getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
-		Optional<Conge> opt = congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new RuntimeException();
-		}
+	public List<Conge> getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
+		return congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
 	}
 	
 	@PostMapping("")
