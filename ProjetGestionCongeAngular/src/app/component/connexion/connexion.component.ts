@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
 import { Utilisateur } from './../../model/utilisateur';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/service/auth';
@@ -13,9 +16,11 @@ export class ConnexionComponent implements OnInit {
   utilisateur: Utilisateur = new Utilisateur();
   message: string;
 
+
   constructor(
     private authentificationService: AuthentificationService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
     ) { }
 
   ngOnInit(): void {
@@ -29,13 +34,18 @@ export class ConnexionComponent implements OnInit {
           'auth',
           btoa(this.utilisateur.mail + ':' + this.utilisateur.mdp)
         );
-        localStorage.setItem('utilisateur', this.utilisateur.mail);
         this.router.navigate(['/home']);
       },
       (error) => {
         this.message = "Erreur d'authentification";
       }
     );
+
+    this.http.get<Observable<Utilisateur>>('http://127.0.0.1:8080/conges/api/utilisateur/'+ this.utilisateur.mail).subscribe (
+           (data) => {
+          }
+         )
+
   }
 
 }

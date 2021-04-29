@@ -21,5 +21,6 @@ export class AuthentificationService {
     return this.http.get<void>('http://127.0.0.1:8080/conges/api/auth/login', {
       headers: headers,
     });
+
   }
 }

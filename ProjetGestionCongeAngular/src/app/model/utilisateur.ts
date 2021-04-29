@@ -4,14 +4,23 @@ import { Service } from './service';
 
 export class Utilisateur {
   public constructor(
-    private _nom: string = '',
-    private _mail: string = '',
-    private _mdp: string = '',
-    private _role: EnumRole = EnumRole.ROLE_EMPLOYE,
+    private _id?: number ,
+    private _nom?: string ,
+    private _mail?: string ,
+    private _mdp?: string ,
+    private _role?: EnumRole,
     private _service?: Service,
     private _manager?: Utilisateur,
     private _conge?: Conge[]
   ) {}
+
+  /**
+   * Getter id
+   * @return {number }
+   */
+   public get id(): number {
+    return this._id;
+  }
 
   /**
    * Getter nom
@@ -58,6 +67,14 @@ export class Utilisateur {
    */
   public get service(): Service {
     return this._service;
+  }
+
+  /**
+   * Setter id
+   * @param {number } value
+   */
+   public set id(value: number) {
+    this._id = value;
   }
 
   /**

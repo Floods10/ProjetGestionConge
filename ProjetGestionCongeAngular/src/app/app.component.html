@@ -1,2 +1,27 @@
+<div>
+  mon site
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+    <b>MENU</b>
 
-<router-outlet><app-home></app-home></router-outlet>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/connexion" routerLinkActive="active">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/demande-conge" routerLinkActive="active">Nouveau congé</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/consultation-conge-emp" routerLinkActive="active">Voir ses congés</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/validation-conge"  routerLinkActive="active">Validation des demandes en attentes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/consultation-conge-mang" routerLinkActive="active">Consultaion conges des employes</a>
+        </li>
+    </ul>
+  </div>
+  </nav>
+</div>
+<router-outlet></router-outlet>
