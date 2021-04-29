@@ -1,9 +1,20 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { EnumTypeConge } from 'src/app/model/enum-type-conge.enum';
+/*import { Observable } from 'rxjs';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AsyncValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';*/
 import { CongeService } from 'src/app/service/conge-service';
 import { Conge } from 'src/app/model/conge';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { FormGroup } from '@angular/forms';
-import { EnumTypeConge } from './../../model/enum-type-conge.enum';
 
 @Component({
   selector: 'app-consultation-conge-emp',
@@ -11,17 +22,56 @@ import { EnumTypeConge } from './../../model/enum-type-conge.enum';
   styleUrls: ['./consultation-conge-emp.component.css'],
 })
 export class ConsultationCongeEmpComponent implements OnInit {
-  conges: Conge[];
-  idManager: number;
+  nom = '';
+  dateDemande: string;
   dateDebut: Date;
   dateFin: Date;
+  duree: number;
   enumTypeConge = EnumTypeConge;
+  motifConge: string;
+  //dateFinCtrl: FormControl;
+  conges: Conge[];
+  idManager: number;
 
-  constructor(private congeService: CongeService) {}
+  constructor(private datePipe: DatePipe, private congeService: CongeService /*private fb: FormBuilder, private inscriptionService: InscriptionService*/
+    ) {
+    this.dateDemande = datePipe.transform(Date.now(),'yyyy-MM-dd');
+    this.duree=0;
+  /*  this.dateFinCtrl = this.fb.control(
+      '',
+      [Validators.required, Validators.minLength(3)],
+      this.controlDateFin()
+    );*/
+  }
 
+ /* controlDateFin(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.inscriptionServie.checkLogin(control.value).pipe(
+        debounceTime(500),
+        map((result: boolean) => {
+          return result ? { loginExist: true } : null;
+        })
+      );
+    };
+  }*/
+dureeOnClick()
+{
+  var Time = this.dateDebut.getTime() - this.dateFin.getTime();
+  this.duree=Time / (1000 * 3600 * 24);
+  console.log(this.duree);
+}
   ngOnInit(): void {
     this.list();
   }
+
+  save()
+  {
+
+  }
+
+  /*dateFinIsInvalid(): boolean {
+    return this.dateFinCtrl.dirty && this.loginCtrl.invalid;
+  }*/
 
   public list() {
     if (localStorage.getItem('id')) {
@@ -31,5 +81,10 @@ export class ConsultationCongeEmpComponent implements OnInit {
           this.conges = data;
         });
     }
+  }
+  annulerChamp()
+  {
+    this.dateDebut= new Date();
+    this.dateFin=new Date();
   }
 }

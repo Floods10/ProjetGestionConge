@@ -1,4 +1,83 @@
-<h1 class="text-center">Vos conges</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="assets/logo_soprasteria.jpeg" style="max-width:50%" class="animated bounce infinite">
+    </div>
+    <div class="col-6">
+      <h1>Nouvelle demande de Conge de nom = " {{ nom }} "</h1>
+    </div>
+    <div class="col">
+      <img src="assets/logo_soprasteria.jpeg" style="max-width:50%" class="animated bounce infinite">
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <h2>Validation des congés</h2>
+  <div class="card-header row">
+    <div class="col-1">Date de la demande:</div>
+    <input
+      id="dateDemande"
+      type="date"
+      [(ngModel)]="dateDemande"
+      class="form-control col-3"
+      [readonly]="true"
+    />
+    <br />
+    <div class="col-1">Date de début des congés:</div>
+    <input
+      id="dateDebut"
+      type="date"
+      [(ngModel)]="dateDebut"
+      class="form-control col-3"
+    />
+    <div class="col-1">Date de fin des congés:</div>
+    <input
+      id="dateFin"
+      type="date"
+      [(ngModel)]="dateFin"
+      class="form-control col-3"
+    />
+
+  </div>
+  </div>
+
+
+<div class="card">
+  <div class="card-header row">
+    <div class="col-1">Nombre de jours:</div>
+    <input
+    id="duree"
+    type="number"
+    [(ngModel)]="duree"
+    (click)="dureeOnClick()"
+    class="form-control col-1"
+  />
+  <div class="col-1">Type de congés:</div>
+  <div class="col-4">
+    <select [(ngModel)]="enumTypeConge">
+      <option *ngFor="let typeconge of enumTypeConge | keyvalue" [ngValue]="typeconge.key"> {{ typeconge.value }}</option>
+    </select>
+  </div>
+<div class="col-1">Motif de congé:</div>
+<input
+id="motifConge"
+type="text"
+[(ngModel)]="motifConge"
+class="form-control col-4"
+/>
+
+  </div>
+</div>
+
+<div class="row">
+<button class="btn btn-outline-info col-1" (click)="save()">enregistrer</button>
+<div class="col-1"></div>
+<a (click)="annulerChamp()">annuler</a>
+</div>
+<br>
 
 <div class="card">
   <div class="card-header">
@@ -10,7 +89,6 @@
         <th>Date demande</th>
         <th>Période</th>
         <th>Type</th>
-        <th>Service</th>
         <th>Motif</th>
         <th>Statut</th>
       </tr>
@@ -37,7 +115,6 @@
             {{ conge.typeConge }}
           </button>
         </td>
-        <td>{{ conge.demandeur.service.nom }}</td>
         <td>
           <input type="text" value="{{ conge.motifConge }}" disabled />
         </td>
@@ -58,3 +135,6 @@
     </table>
   </div>
 </div>
+
+
+
