@@ -8,7 +8,7 @@ export class Conge {
     private _dateDebut?: Date,
     private _dateFin?: Date,
     private _duree: number = 0,
-    private _typeConge: EnumTypeConge = EnumTypeConge.congesPayes,
+    private _typeConge: EnumTypeConge = EnumTypeConge.congePaye,
     private _motifConge: string = 'Motif non renseigné',
     private _statutDemande: EnumStatutDemande = EnumStatutDemande.attente,
     private _commentaireSiRefuse: string = 'Motif de refus non renseigné'

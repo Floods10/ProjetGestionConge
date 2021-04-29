@@ -75,11 +75,21 @@ public class CongeRestController {
 	public List<Conge> getCongeByDemandeur(@PathVariable("id") Integer id) {
 		return congeRepository.findByDemandeur(id);
 	}
+	@GetMapping("/{id}/manager")
+	@JsonView(Views.Common.class)
+	public List<Conge> getCongeByManager(@PathVariable("id") Integer id) {
+		return congeRepository.findByManager(id);
+	}
 
 	@GetMapping("/{dateDebut}/{dateFin}")
 	@JsonView(Views.Common.class)
 	public List<Conge> getCongeEntreDeuxDates(@PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
 		return congeRepository.getCongeEntreDeuxDates(LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
+	}
+	@GetMapping("/{id}/{dateDebut}/{dateFin}/manager")
+	@JsonView(Views.Common.class)
+	public List<Conge> getCongeEntreDeuxDatesByManager(@PathVariable("id") Integer id, @PathVariable("dateDebut") String dateDebut, @PathVariable("dateFin") String dateFin) {
+		return congeRepository.getCongeEntreDeuxDatesByManager(id, LocalDate.parse(dateDebut), LocalDate.parse(dateFin));
 	}
 	
 	@PostMapping("")

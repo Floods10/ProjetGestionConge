@@ -32,11 +32,11 @@ public class Utilisateur {
 	private Integer id;
 	
 	@Column(name = "nom", length = 100, unique = false, nullable = false)
-	@JsonView(Views.CongeWithDemandeur.class)
+	@JsonView(Views.Common.class)
 	private String nom; 
 	
 	@Column(name = "mail", length = 100, unique = true, nullable = false)
-	@JsonView(Views.CongeWithDemandeur.class)
+	@JsonView(Views.Common.class)
 	private String mail; 
 	
 	@Column(name = "mdp", length = 200, nullable = false)

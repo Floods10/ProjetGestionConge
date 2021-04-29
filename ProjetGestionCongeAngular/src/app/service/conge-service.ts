@@ -14,23 +14,33 @@ export class CongeService {
   public getAllConge(): Observable<Conge[]> {
     return this.http.get<Conge[]>(CongeService.URL);
   }
+  public getByManager(id: number): Observable<Conge[]> {
+    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/manager');
+  }
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(CongeService.URL + '/' + id);
   }
   public getById(id: number): Observable<Conge> {
     return this.http.get<Conge>(CongeService.URL + '/' + id);
   }
-  // TODO: Verifier qu'il faut pas mettre une liste ou un array
   public getCongeByDemandeur(id: number): Observable<Conge> {
     return this.http.get<Conge>(CongeService.URL + '/' + id + '/demandeur');
   }
-  // TODO: Verifier qu'il faut pas mettre une liste ou un array
   public getCongeEntreDeuxDates(
     dateDebut: Date,
     dateFin: Date
   ): Observable<Conge> {
     return this.http.get<Conge>(
       CongeService.URL + '/' + dateDebut + '/' + dateFin
+    );
+  }
+  public getCongeEntreDeuxDatesByManager(
+    id: number,
+    dateDebut: Date,
+    dateFin: Date
+  ): Observable<Conge[]> {
+    return this.http.get<Conge[]>(
+      CongeService.URL + '/' + id + '/' + dateDebut + '/' + dateFin + '/manager'
     );
   }
   public postConge(conge: Conge): Observable<Conge> {

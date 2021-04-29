@@ -1,7 +1,29 @@
 <h1 class="text-center">Menu manager</h1>
 
 <div class="card">
-  <div class="card-header">Validation des congés</div>
+  <div class="card-header">
+    Validation des congés
+    <input
+      id="id"
+      [(ngModel)]="idManager"
+      class="form-control"
+      placeholder="idManager"
+    />
+    <br />
+    <input
+      id="dateDeb"
+      type="date"
+      [(ngModel)]="dateDebut"
+      class="form-control"
+    />
+    <input
+      id="dateFin"
+      type="date"
+      [(ngModel)]="dateFin"
+      class="form-control"
+    />
+    <button (click)="this.list()" class="btn btn-outline-success">Ok</button>
+  </div>
   <div class="card-body">
     <table class="table">
       <tr>
@@ -13,7 +35,16 @@
         <th>Statut</th>
       </tr>
       <tr *ngFor="let conge of conges">
-        <td>{{ conge.demandeur.mail }}</td>
+        <td>
+          <div class="card">
+            <div class="card-header">
+              {{ conge.demandeur.nom }}
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ conge.demandeur.mail }}</li>
+            </ul>
+          </div>
+        </td>
         <td>
           <input type="date" value="{{ conge.dateDemande }}" disabled />
         </td>
@@ -23,7 +54,16 @@
           <input type="date" value="{{ conge.dateFin }}" disabled />
         </td>
         <td class="">
-          <button type="button" class="btn btn-info">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="{
+              'btn-primary': conge.typeConge == 'congePaye',
+              'btn-secondary': conge.typeConge == 'congeSansSolde',
+              'btn-light': conge.typeConge == 'absenceAutorisee',
+              'btn-info': conge.typeConge == 'absenceJustifiee'
+            }"
+          >
             {{ conge.typeConge }}
           </button>
         </td>
@@ -31,7 +71,15 @@
           <input type="text" value="{{ conge.motifConge }}" disabled />
         </td>
         <td class="">
-          <button type="button" class="btn btn-warning">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="{
+              'btn-warning': conge.statutDemande == 'attente',
+              'btn-success': conge.statutDemande == 'accepte',
+              'btn-danger': conge.statutDemande == 'refuse'
+            }"
+          >
             {{ conge.statutDemande }}
           </button>
         </td>
