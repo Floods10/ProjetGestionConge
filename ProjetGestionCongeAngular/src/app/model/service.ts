@@ -1,4 +1,4 @@
-import { Utilisateur } from './../service/utilisateur';
+import { Utilisateur } from './../model/utilisateur';
 export class Service {
   public constructor(
     private _nom: string = '',

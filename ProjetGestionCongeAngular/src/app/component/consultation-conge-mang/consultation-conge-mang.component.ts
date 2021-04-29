@@ -15,6 +15,7 @@ export class ConsultationCongeMangComponent implements OnInit {
   idManager: number;
   dateDebut: Date;
   dateFin: Date;
+  enumTypeConge = EnumTypeConge;
 
   constructor(private congeService: CongeService) {}
 

@@ -6,6 +6,6 @@
 <br>
 <button (click)="voirSesConges()" class="btn btn-outline-warning">Voir ses conges</button>
 <br>
-<a *ngIf="isVisible()" [routerLink]="['/validation-conge']" routerLinkActive="router-link-active"> Validation des demandes en attentes</a>
+<a *ngIf="isVisible()" routerLink="/validation-conge" class="btn btn-link" routerLinkActive="active"> Validation des demandes en attentes</a>
 <br>
 <a *ngIf="isVisible()" [routerLink]="['/consultation-conge-mang']" routerLinkActive="router-link-active"> Regarder les conges des employes</a>

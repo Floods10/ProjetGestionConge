@@ -58,10 +58,10 @@
             type="button"
             class="btn"
             [ngClass]="{
-              'btn-primary': conge.typeConge == 'congePaye',
-              'btn-secondary': conge.typeConge == 'congeSansSolde',
-              'btn-light': conge.typeConge == 'absenceAutorisee',
-              'btn-info': conge.typeConge == 'absenceJustifiee'
+              'btn-primary': conge.typeConge == enumTypeConge.congePaye,
+              'btn-secondary': conge.typeConge == enumTypeConge.congeSansSolde,
+              'btn-light': conge.typeConge == enumTypeConge.absenceAutorisee,
+              'btn-info': conge.typeConge == enumTypeConge.absenceJustifiee
             }"
           >
             {{ conge.typeConge }}
