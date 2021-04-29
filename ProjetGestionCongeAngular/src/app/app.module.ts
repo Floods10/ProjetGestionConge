@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,8 +26,9 @@ import { routes } from './routes';
   imports: [
     RouterModule.forRoot(routes),
     FormsModule,
-    BrowserModule,
     HttpClientModule,
+    //HttpClient,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent],

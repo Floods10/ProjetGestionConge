@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   nouvelleDemande(): void
   {
-    this.router.navigate(['/demande-conge'])
+    this.router.navigate(['../demande-conge'])
   }
 
   voirSesConges(): void
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   isVisible(): boolean {
-    return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? false : true;
+    return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? true : true;
   }
 
 }
