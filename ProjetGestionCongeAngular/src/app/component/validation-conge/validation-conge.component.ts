@@ -1,8 +1,12 @@
+import { EnumStatutDemande } from 'src/app/model/enum-statut-demande.enum';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 import { CongeService } from '../../service/conge-service';
 import { Conge } from './../../model/conge';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
@@ -13,12 +17,14 @@ import { Component, OnInit } from '@angular/core';
 export class ValidationCongeComponent implements OnInit {
   conges: Observable <Conge[]>;
   idDemandeur: number;
+
   conge : Conge;
 
-  constructor(private congeService: CongeService) { }
+  constructor(private congeService: CongeService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
    this.list(this.idDemandeur);
+   console.log(this.congeService.getByManager(3));
   }
 
   list(idDemandeur: number){
@@ -33,15 +39,17 @@ export class ValidationCongeComponent implements OnInit {
 
 
   refuserDemande(id: number) {
-    this.congeService.delete(id).subscribe((res) => {
-      this.congeService.getCongeByDemandeur(this.idDemandeur);
+    this.conge.statutDemande='accepte';
+    this.congeService.validerConge(this.conge).subscribe((data) => {
+      this.router.navigate(['./validation-conge.component.html'])
     });
 
   }
 
   validerDemande(id: number){
-    this.congeService.postConge(this.conge).subscribe((data) => {
-      this.conge = data;
+    this.conge.statutDemande='accepte';
+    this.congeService.validerConge(this.conge).subscribe((data) => {
+      this.router.navigate(['./validation-conge.component.html'])
     });
   }
 

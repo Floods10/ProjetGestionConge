@@ -3,6 +3,7 @@ import { EnumStatutDemande } from './enum-statut-demande.enum';
 import { EnumTypeConge } from './enum-type-conge.enum';
 export class Conge {
   public constructor(
+    private _id?: number,
     private _demandeur?: Utilisateur,
     private _dateDemande?: Date,
     private _dateDebut?: Date,
@@ -10,9 +11,17 @@ export class Conge {
     private _duree: number = 0,
     private _typeConge: EnumTypeConge = EnumTypeConge.congePaye,
     private _motifConge: string = 'Motif non renseigné',
-    private _statutDemande: EnumStatutDemande = EnumStatutDemande.attente,
+    private _statutDemande = 'attente',
     private _commentaireSiRefuse: string = 'Motif de refus non renseigné'
   ) {}
+
+   /**
+   * Getter
+   * @return {number }
+   */
+    public get id(): number {
+      return this._id;
+    }
 
   /**
    * Getter
@@ -38,6 +47,13 @@ export class Conge {
     return this._dateDemande;
   }
 
+  /**
+   * Setter
+   * @param {number } value
+   */
+   public set id(value: number) {
+    this._id = value;
+  }
   /**
    * Setter
    * @param {Date } value
@@ -104,9 +120,9 @@ export class Conge {
 
   /**
    * Getter statutDemande
-   * @return {EnumStatutDemande }
+   * @return {string }
    */
-  public get statutDemande(): EnumStatutDemande {
+  public get statutDemande(): string {
     return this._statutDemande;
   }
 
@@ -144,9 +160,9 @@ export class Conge {
 
   /**
    * Setter statutDemande
-   * @param {EnumStatutDemande } value
+   * @param {string } value
    */
-  public set statutDemande(value: EnumStatutDemande) {
+  public set statutDemande(value: string) {
     this._statutDemande = value;
   }
 

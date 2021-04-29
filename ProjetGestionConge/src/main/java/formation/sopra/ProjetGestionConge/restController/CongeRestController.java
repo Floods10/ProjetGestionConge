@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,9 +33,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.ProjetGestionConge.entities.Conge;
+import formation.sopra.ProjetGestionConge.entities.StatutDemande;
 import formation.sopra.ProjetGestionConge.entities.Utilisateur;
+
 import formation.sopra.ProjetGestionConge.repositories.CongeRepository;
 import formation.sopra.ProjetGestionConge.repositories.UtilisateurRepository;
+
 
 
 
@@ -115,6 +119,20 @@ public class CongeRestController {
 				ReflectionUtils.makeAccessible(field);
 				ReflectionUtils.setField(field, conge, value);
 			});
+			return congeRepository.save(conge);
+		}
+		throw new RuntimeException();
+	}
+	
+	@PutMapping("/{id}")
+	@JsonView(Views.Common.class)
+	public Conge update(@Valid @RequestBody Conge conge, BindingResult br, @PathVariable("id") Integer id) {
+		Optional<Conge> opt = congeRepository.findById(id);
+		if (opt.isPresent()) {
+			Conge formationEnBase = opt.get();
+			conge.setVersion(formationEnBase.getVersion());
+			conge.setId(id);
+			conge.setStatutDemande(conge.getStatutDemande());
 			return congeRepository.save(conge);
 		}
 		throw new RuntimeException();

@@ -1,3 +1,4 @@
+import { EnumStatutDemande } from 'src/app/model/enum-statut-demande.enum';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -57,7 +58,13 @@ export class CongeService {
     };
     return this.http.post<Conge>(CongeService.URL, congeFormate);
   }
-  public patchConge(id: number, body: Map<string, string>): Observable<Conge> {
+  public patchConge(id: number, body: Map<string, Object>): Observable<Conge> {
     return this.http.patch<Conge>(CongeService.URL + '/' + id, body);
   }
-}
+  public validerConge(conge: Conge): Observable<Conge> {
+    return this.http.put<Conge>(
+      CongeService.URL + '/' + conge.id,
+      conge,);
+  }
+  }
+

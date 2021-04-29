@@ -30,7 +30,8 @@
     <td>{{ conge.dateFin | date: "dd/MM/yyyy" }}</td>
     <td>{{ conge.duree }}</td>
     <td>{{ conge.motifConge }}</td>
-    <td>{{ conge.demandeur.service.nom}}</td>
+    <td>{{ conge.demandeur.service.adresse }}</td>
+
 
     <br>
     <button (click)="validerDemande()" class="btn btn-outline-success">Valider le congé</button>
