@@ -92,11 +92,27 @@ export class ConsultationCongeEmpComponent implements OnInit {
     this.newConge.demandeur = this.userConnected;
 
     this.newConge.dateDemande = new Date();
-    this.newConge.dateDebut = this.dateDebut;
-    this.newConge.dateFin = this.dateFin;
+
+    if (this.newConge.dateDebut) {
+      this.newConge.dateDebut = this.dateDebut;
+    } else {
+      this.newConge.dateDebut = new Date();
+    }
+
+    if (this.newConge.dateFin) {
+      this.newConge.dateFin = this.dateFin;
+    } else {
+      this.newConge.dateFin = new Date();
+    }
+
     //this.newConge.duree = 'this.duree';
     this.newConge.typeConge = this.enumTypeConge.absenceAutorisee;
-    this.newConge.motifConge = this.motifConge;
+    if ((this.newConge.motifConge = this.motifConge)) {
+      this.newConge.motifConge = this.motifConge;
+    } else {
+      this.newConge.motifConge = '';
+    }
+
     this.newConge.statutDemande = this.enumStatutDemande.attente;
     this.newConge.commentaireSiRefuse = '';
 
