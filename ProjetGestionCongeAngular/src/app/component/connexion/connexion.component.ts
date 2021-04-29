@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
 import { Utilisateur } from './../../model/utilisateur';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/service/auth';
@@ -6,30 +9,32 @@ import { AuthentificationService } from 'src/app/service/auth';
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.css']
+  styleUrls: ['./connexion.component.css'],
 })
 export class ConnexionComponent implements OnInit {
-
   utilisateur: Utilisateur = new Utilisateur();
   message: string;
 
   constructor(
     private authentificationService: AuthentificationService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   send() {
+    console.log(this.utilisateur);
     this.authentificationService.getAuthApi(this.utilisateur).subscribe(
-      (res) => {
+      (connected) => {
+        this.authentificationService
+          .getConnectedUser(this.utilisateur)
+          .subscribe((user) => {
+            localStorage.setItem('id', user.id.toString());
+            localStorage.setItem('nom', user.nom);
+            localStorage.setItem('mail', user.mail);
+          });
         this.message = null;
-        localStorage.setItem(
-          'auth',
-          btoa(this.utilisateur.mail + ':' + this.utilisateur.mdp)
-        );
-        localStorage.setItem('utilisateur', this.utilisateur.mail);
         this.router.navigate(['/home']);
       },
       (error) => {
@@ -37,5 +42,4 @@ export class ConnexionComponent implements OnInit {
       }
     );
   }
-
 }
