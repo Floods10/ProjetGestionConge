@@ -53,7 +53,9 @@ export class CongeService {
   }
   public postConge(conge: Conge): Observable<Conge> {
     const congeFormate = {
-      demandeur: conge.demandeur,
+      demandeur: {
+        id: conge.demandeur.id,
+      },
       dateDemande: conge.dateDemande,
       dateDebut: conge.dateDebut,
       dateFin: conge.dateFin,
