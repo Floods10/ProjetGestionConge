@@ -1,16 +1,6 @@
 <h1> Validation des Congés / Page Manager </h1>
 
-<div class="card">
-  <div class="card-header">
-    Validation des congés
-    <input
-      id="id"
-      [(ngModel)]="idDemandeur"
-      class="form-control"
-      placeholder="idDemandeur"
-    />
-    <button (click)="this.list(this.idDemandeur)" class="btn btn-outline-success">Ok</button>
-  </div>
+
 
 <table class="table">
   <tr>
@@ -32,10 +22,8 @@
     <td>{{ conge.duree }}</td>
     <td>{{ conge.motifConge }}</td>
     <td>{{ conge.demandeur.service.adresse }}</td>
-    <td><mat-input-container floatPlaceholder="auto">
-          <textarea matInput [(ngModel)]="conge.commentaireSiRefuse" required
-          placeholder=""></textarea> </mat-input-container>
-     </td>
+    <td><input [(ngModel)]="conge.commentaireSiRefuse" /></td>
+
 
     <br>
     <button (click)="validerDemande( conge.id )" class="btn btn-outline-success">Valider le congé</button>
