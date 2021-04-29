@@ -1,18 +1,24 @@
-
 <div class="container">
   <div class="row">
     <div class="col">
-      <img src="assets/logo_soprasteria.jpeg" style="max-width:50%" class="animated bounce infinite">
+      <img
+        src="assets/logo_soprasteria.jpeg"
+        style="max-width: 50%"
+        class="animated bounce infinite"
+      />
     </div>
     <div class="col-6">
-      <h1>Nouvelle demande de Conge de nom = " {{ nom }} "</h1>
+      <h1>Nouvelle demande de Conge de {{ pseudo }}</h1>
     </div>
     <div class="col">
-      <img src="assets/logo_soprasteria.jpeg" style="max-width:50%" class="animated bounce infinite">
+      <img
+        src="assets/logo_soprasteria.jpeg"
+        style="max-width: 50%"
+        class="animated bounce infinite"
+      />
     </div>
   </div>
 </div>
-
 
 <div class="card">
   <h2>Validation des congés</h2>
@@ -40,44 +46,47 @@
       [(ngModel)]="dateFin"
       class="form-control col-3"
     />
-
   </div>
-  </div>
-
+</div>
 
 <div class="card">
   <div class="card-header row">
     <div class="col-1">Nombre de jours:</div>
     <input
-    id="duree"
-    type="number"
-    [(ngModel)]="duree"
-    (click)="dureeOnClick()"
-    class="form-control col-1"
-  />
-  <div class="col-1">Type de congés:</div>
-  <div class="col-4">
-    <select [(ngModel)]="enumTypeConge">
-      <option *ngFor="let typeconge of enumTypeConge | keyvalue" [ngValue]="typeconge.key"> {{ typeconge.value }}</option>
-    </select>
-  </div>
-<div class="col-1">Motif de congé:</div>
-<input
-id="motifConge"
-type="text"
-[(ngModel)]="motifConge"
-class="form-control col-4"
-/>
-
+      id="duree"
+      type="number"
+      [(ngModel)]="duree"
+      class="form-control col-1"
+    />
+    <div class="col-1">Type de congés:</div>
+    <div class="col-4">
+      <select [(ngModel)]="enumTypeConge">
+        <option
+          *ngFor="let typeconge of enumTypeConge | keyvalue"
+          [ngValue]="typeconge.key"
+        >
+          {{ typeconge.value }}
+        </option>
+      </select>
+    </div>
+    <div class="col-1">Motif de congé:</div>
+    <input
+      id="motifConge"
+      type="text"
+      [(ngModel)]="motifConge"
+      class="form-control col-4"
+    />
   </div>
 </div>
 
 <div class="row">
-<button class="btn btn-outline-info col-1" (click)="save()">enregistrer</button>
-<div class="col-1"></div>
-<a (click)="annulerChamp()">annuler</a>
+  <button class="btn btn-outline-info col-1" (click)="save()">
+    enregistrer
+  </button>
+  <div class="col-1"></div>
+  <a (click)="annulerChamp()">annuler</a>
 </div>
-<br>
+<br />
 
 <div class="card">
   <div class="card-header">
@@ -89,6 +98,7 @@ class="form-control col-4"
         <th>Date demande</th>
         <th>Période</th>
         <th>Type</th>
+        <th>Service</th>
         <th>Motif</th>
         <th>Statut</th>
       </tr>
@@ -115,6 +125,7 @@ class="form-control col-4"
             {{ conge.typeConge }}
           </button>
         </td>
+        <td>{{ conge.demandeur.service.nom }}</td>
         <td>
           <input type="text" value="{{ conge.motifConge }}" disabled />
         </td>
@@ -135,6 +146,3 @@ class="form-control col-4"
     </table>
   </div>
 </div>
-
-
-

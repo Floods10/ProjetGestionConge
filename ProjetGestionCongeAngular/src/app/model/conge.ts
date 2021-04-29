@@ -11,17 +11,17 @@ export class Conge {
     private _duree: number = 0,
     private _typeConge: EnumTypeConge = EnumTypeConge.congePaye,
     private _motifConge: string = 'Motif non renseigné',
-    private _statutDemande = 'attente',
+    private _statutDemande: EnumStatutDemande = EnumStatutDemande.attente,
     private _commentaireSiRefuse: string = 'Motif de refus non renseigné'
   ) {}
 
-   /**
+  /**
    * Getter
    * @return {number }
    */
-    public get id(): number {
-      return this._id;
-    }
+  public get id(): number {
+    return this._id;
+  }
 
   /**
    * Getter
@@ -51,7 +51,7 @@ export class Conge {
    * Setter
    * @param {number } value
    */
-   public set id(value: number) {
+  public set id(value: number) {
     this._id = value;
   }
   /**
@@ -120,9 +120,9 @@ export class Conge {
 
   /**
    * Getter statutDemande
-   * @return {string }
+   * @return {EnumStatutDemande }
    */
-  public get statutDemande(): string {
+  public get statutDemande(): EnumStatutDemande {
     return this._statutDemande;
   }
 
@@ -160,9 +160,9 @@ export class Conge {
 
   /**
    * Setter statutDemande
-   * @param {string } value
+   * @param {EnumStatutDemande } value
    */
-  public set statutDemande(value: string) {
+  public set statutDemande(value: EnumStatutDemande) {
     this._statutDemande = value;
   }
 
