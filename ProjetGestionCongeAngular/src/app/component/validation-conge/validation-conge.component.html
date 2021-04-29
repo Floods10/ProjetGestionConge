@@ -21,6 +21,7 @@
     <th> durée</th>
     <th> le motif du congé</th>
     <th> service</th>
+    <th> Commentaires</th>
   </tr>
 
   <tr *ngFor="let conge of conges | async">
@@ -31,12 +32,15 @@
     <td>{{ conge.duree }}</td>
     <td>{{ conge.motifConge }}</td>
     <td>{{ conge.demandeur.service.adresse }}</td>
-
+    <td><mat-input-container floatPlaceholder="auto">
+          <textarea matInput [(ngModel)]="conge.commentaireSiRefuse" required
+          placeholder=""></textarea> </mat-input-container>
+     </td>
 
     <br>
-    <button (click)="validerDemande()" class="btn btn-outline-success">Valider le congé</button>
+    <button (click)="validerDemande( conge.id )" class="btn btn-outline-success">Valider le congé</button>
     <br><br>
-    <button (click)="refuserDemande()" class="btn btn-outline-warning">Refuser le congé</button>
+    <button (click)="refuserDemande( conge.id,conge.commentaireSiRefuse )" class="btn btn-outline-warning">Refuser le congé</button>
     <br>
 
 

@@ -15,21 +15,7 @@ export class HomeComponent implements OnInit {
   utilisateur: Utilisateur = new Utilisateur();
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      this.nom = localStorage.getItem('nom');
-    });
-  }
-
-  nouvelleDemande(): void
-  {
-    this.router.navigate(['../demande-conge'])
-  }
-
-  voirSesConges(): void
-  {
-    this.router.navigate(['/consultation-conge-emp']);
-  }
+  ngOnInit(): void { }
 
   isVisible(): boolean {
     return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? true : true;

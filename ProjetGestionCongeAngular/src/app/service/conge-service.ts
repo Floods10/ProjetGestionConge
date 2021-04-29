@@ -61,10 +61,14 @@ export class CongeService {
   public patchConge(id: number, body: Map<string, Object>): Observable<Conge> {
     return this.http.patch<Conge>(CongeService.URL + '/' + id, body);
   }
-  public validerConge(conge: Conge): Observable<Conge> {
-    return this.http.put<Conge>(
-      CongeService.URL + '/' + conge.id,
-      conge,);
+  public validerConge(id : number): Observable<Conge> {
+    return this.http.patch<Conge>(
+      CongeService.URL + '/' + id +'/validee',{});
+  }
+
+  public refuserConge(id : number,com : string): Observable<Conge> {
+    return this.http.patch<Conge>(
+      CongeService.URL + '/' + id +'/refus',{com});
   }
   }
 

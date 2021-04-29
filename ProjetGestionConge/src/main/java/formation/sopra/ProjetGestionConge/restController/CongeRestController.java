@@ -1,19 +1,15 @@
 package formation.sopra.ProjetGestionConge.restController;
 
 import java.lang.reflect.Field;
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,17 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.ProjetGestionConge.entities.Conge;
 import formation.sopra.ProjetGestionConge.entities.StatutDemande;
-import formation.sopra.ProjetGestionConge.entities.Utilisateur;
-
 import formation.sopra.ProjetGestionConge.repositories.CongeRepository;
 import formation.sopra.ProjetGestionConge.repositories.UtilisateurRepository;
 
@@ -148,6 +140,33 @@ public class CongeRestController {
 		} else {
 			throw new RuntimeException();
 		}
+	}
+	
+	
+	@PutMapping("/{id}/validee")
+	@ResponseStatus(value=HttpStatus.OK)
+	@JsonView(Views.Common.class)
+	public Conge update(@PathVariable("id") Integer id) {
+		Optional<Conge> opt = congeRepository.findById(id);
+		if (opt.isPresent()) {
+			Conge formationEnBase = opt.get();
+			formationEnBase.setStatutDemande(StatutDemande.accepte);
+			return congeRepository.save(formationEnBase);
+		}
+		throw new RuntimeException();
+	}
+	
+	@PutMapping("/{id}/refus")
+	@JsonView(Views.Common.class)
+	public Conge refus(@RequestBody String com, @PathVariable("id") Integer id) {
+		Optional<Conge> opt = congeRepository.findById(id);
+		if (opt.isPresent()) {
+			Conge formationEnBase = opt.get();
+			formationEnBase.setCommentaireSiRefuse(com);
+			formationEnBase.setStatutDemande(StatutDemande.refuse);
+			return congeRepository.save(formationEnBase);
+		}
+		throw new RuntimeException();
 	}
 	
 
