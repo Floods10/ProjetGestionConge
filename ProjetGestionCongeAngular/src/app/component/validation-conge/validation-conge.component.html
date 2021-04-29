@@ -1,3 +1,42 @@
-<h1> Validation des Conges / Page Manager </h1>
+<h1> Validation des Congés / Page Manager </h1>
+
+<div class="card">
+  <div class="card-header">
+    Validation des congés
+    <input
+      id="id"
+      [(ngModel)]="idDemandeur"
+      class="form-control"
+      placeholder="idDemandeur"
+    />
+    <button (click)="this.list(this.idDemandeur)" class="btn btn-outline-success">Ok</button>
+  </div>
+
+<table class="table">
+  <tr>
+    <th> demandeur</th>
+    <th> Type de congé</th>
+    <th> date de début</th>
+    <th> date de fin</th>
+    <th> durée</th>
+    <th> le motif du congé</th>
+    <th> service</th>
+  </tr>
+
+  <tr *ngFor="let conge of conges | async">
+    <td>{{ conge.demandeur.mail }}</td>
+    <td>{{ conge.typeConge }}</td>
+    <td>{{ conge.dateDebut | date: "dd/MM/yyyy" }}</td>
+    <td>{{ conge.dateFin | date: "dd/MM/yyyy" }}</td>
+    <td>{{ conge.duree }}</td>
+    <td>{{ conge.motifConge }}</td>
+    <td>{{ conge.demandeur.service.nom}}</td>
+
+    <br>
+    <button (click)="validerDemande()" class="btn btn-outline-success">Valider le congé</button>
+    <br><br>
+    <button (click)="refuserDemande()" class="btn btn-outline-warning">Refuser le congé</button>
+    <br>
 
 
+</tr></table>

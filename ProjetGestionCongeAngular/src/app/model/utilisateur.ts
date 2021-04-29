@@ -45,6 +45,13 @@ export class Utilisateur {
     return this._role;
   }
 
+   /**
+   * Getter service
+   * @return {Service }
+   */
+    public get service(): Service {
+      return this._service;
+    }
   /**
    * Getter role
    * @return {Service }
