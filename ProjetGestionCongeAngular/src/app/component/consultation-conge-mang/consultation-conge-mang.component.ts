@@ -30,25 +30,28 @@ export class ConsultationCongeMangComponent implements OnInit {
   }
 
   public list() {
-    if (this.idManager && this.dateDebut && this.dateFin) {
-      this.congeService
-        .getCongeEntreDeuxDatesByManager(
-          this.idManager,
-          this.dateDebut,
-          this.dateFin
-        )
-        .subscribe((data) => {
+    if (localStorage.getItem('id')) {
+      this.idManager = Number(localStorage.getItem('id'));
+      if (this.idManager && this.dateDebut && this.dateFin) {
+        this.congeService
+          .getCongeEntreDeuxDatesByManager(
+            this.idManager,
+            this.dateDebut,
+            this.dateFin
+          )
+          .subscribe((data) => {
+            this.conges = data;
+          });
+      }
+      if (this.idManager) {
+        this.congeService.getByManager(this.idManager).subscribe((data) => {
           this.conges = data;
         });
-    }
-    if (this.idManager) {
-      this.congeService.getByManager(this.idManager).subscribe((data) => {
-        this.conges = data;
-      });
-    } else {
-      this.congeService.getAllConge().subscribe((data) => {
-        this.conges = data;
-      });
+      } else {
+        this.congeService.getAllConge().subscribe((data) => {
+          this.conges = data;
+        });
+      }
     }
   }
 }
