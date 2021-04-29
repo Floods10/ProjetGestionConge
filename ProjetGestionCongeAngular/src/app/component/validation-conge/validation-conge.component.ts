@@ -24,14 +24,12 @@ export class ValidationCongeComponent implements OnInit {
 
   ngOnInit(): void {
    this.list(this.idDemandeur);
-   console.log(this.congeService.getByManager(3));
+   console.log(this.congeService.getByManagerAttente(3));
   }
 
   list(idDemandeur: number){
-    if (idDemandeur){
-      this.conges = this.congeService.getCongeByDemandeur(this.idDemandeur);
-    } else {
-      this.conges = this.congeService.getByManager(3);
+    if (localStorage.getItem('id')){
+      this.conges = this.congeService.getByManagerAttente(Number(localStorage.getItem('id')));
     }
 
   };
@@ -39,15 +37,18 @@ export class ValidationCongeComponent implements OnInit {
 
 
   refuserDemande(id: number,com:string) {
+
     this.congeService.refuserConge(id,com).subscribe((data) => {
-      this.router.navigate(['./validation-conge.component.html'])
+      this.router.navigate(['/validation-conge'])
+      location.reload();
     });
 
   }
 
   validerDemande(id: number){
     this.congeService.validerConge(id).subscribe((data) => {
-      this.router.navigate(['./validation-conge.component.html'])
+      this.router.navigate(['/validation-conge'])
+      location.reload();
     });
   }
 

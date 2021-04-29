@@ -18,6 +18,9 @@ export class CongeService {
   public getByManager(id: number): Observable<Conge[]> {
     return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/manager');
   }
+  public getByManagerAttente(id: number): Observable<Conge[]> {
+    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/managerAttente');
+  }
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(CongeService.URL + '/' + id);
   }
@@ -26,6 +29,10 @@ export class CongeService {
   }
   public getCongeByDemandeur(id: number): Observable<Conge[]> {
     return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/demandeur');
+  }
+
+  public getCongeByDemandeurAttente(id: number): Observable<Conge[]> {
+    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/demandeurAttente');
   }
   public getCongeEntreDeuxDates(
     dateDebut: Date,
@@ -64,12 +71,12 @@ export class CongeService {
     return this.http.patch<Conge>(CongeService.URL + '/' + id, body);
   }
   public validerConge(id : number): Observable<Conge> {
-    return this.http.patch<Conge>(
+    return this.http.put<Conge>(
       CongeService.URL + '/' + id +'/validee',{});
   }
 
   public refuserConge(id : number,com : string): Observable<Conge> {
-    return this.http.patch<Conge>(
+    return this.http.put<Conge>(
       CongeService.URL + '/' + id +'/refus',{com});
   }
   }

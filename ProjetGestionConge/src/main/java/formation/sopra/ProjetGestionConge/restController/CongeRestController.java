@@ -76,6 +76,18 @@ public class CongeRestController {
 	public List<Conge> getCongeByManager(@PathVariable("id") Integer id) {
 		return congeRepository.findByManager(id);
 	}
+	
+	// findBy...Attente	
+		@GetMapping("/{id}/demandeurAttente")
+		@JsonView(Views.Common.class)
+		public List<Conge> getCongeByDemandeurAttente(@PathVariable("id") Integer id) {
+			return congeRepository.findByDemandeurAttente(id);
+		}
+		@GetMapping("/{id}/managerAttente")
+		@JsonView(Views.Common.class)
+		public List<Conge> getCongeByManagerAttente(@PathVariable("id") Integer id) {
+			return congeRepository.findByManagerAttente(id);
+		}
 
 	@GetMapping("/{dateDebut}/{dateFin}")
 	@JsonView(Views.Common.class)
