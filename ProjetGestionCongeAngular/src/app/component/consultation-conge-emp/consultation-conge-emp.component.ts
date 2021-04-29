@@ -88,16 +88,9 @@ export class ConsultationCongeEmpComponent implements OnInit {
   }
   save() {
     this.userConnected.id = Number(localStorage.getItem('id'));
-    //this.userConnected.nom = this.pseudo; //localStorage.getItem('nom');
-    //this.userConnected.mail = localStorage.getItem('mail');
 
     this.newConge.demandeur = this.userConnected;
-    /*
-    this.newConge.demandeur = new Utilisateur(
-      Number(localStorage.getItem('id')),
-      localStorage.getItem('nom'),
-      localStorage.getItem('mail')
-    );*/
+
     this.newConge.dateDemande = new Date();
     this.newConge.dateDebut = this.dateDebut;
     this.newConge.dateFin = this.dateFin;
@@ -107,17 +100,10 @@ export class ConsultationCongeEmpComponent implements OnInit {
     this.newConge.statutDemande = this.enumStatutDemande.attente;
     this.newConge.commentaireSiRefuse = '';
 
-    console.log('0: ' + this.newConge.demandeur);
-    console.log('1: ' + this.userConnected.nom);
-    console.log('2: ' + this.newConge.demandeur.nom);
     this.congeService.postConge(this.newConge).subscribe();
 
     location.reload();
   }
-
-  /*dateFinIsInvalid(): boolean {
-    return this.dateFinCtrl.dirty && this.loginCtrl.invalid;
-  }*/
 
   public list() {
     if (localStorage.getItem('id')) {
@@ -129,7 +115,6 @@ export class ConsultationCongeEmpComponent implements OnInit {
     }
   }
   annulerChamp() {
-    this.dateDebut = new Date();
-    this.dateFin = new Date();
+    location.reload();
   }
 }

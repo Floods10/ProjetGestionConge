@@ -83,8 +83,7 @@
   <button class="btn btn-outline-info col-1" (click)="save()">
     enregistrer
   </button>
-  <div class="col-1"></div>
-  <a (click)="annulerChamp()">annuler</a>
+  <a class="btn btn-outline-warning col-1" (click)="annulerChamp()">annuler</a>
 </div>
 <br />
 
@@ -98,7 +97,6 @@
         <th>Date demande</th>
         <th>Période</th>
         <th>Type</th>
-        <th>Service</th>
         <th>Motif</th>
         <th>Statut</th>
       </tr>
@@ -125,7 +123,6 @@
             {{ conge.typeConge }}
           </button>
         </td>
-        <td>{{ conge.demandeur.service.nom }}</td>
         <td>
           <input type="text" value="{{ conge.motifConge }}" disabled />
         </td>
