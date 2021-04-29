@@ -50,7 +50,7 @@ public class Utilisateur {
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_service", foreignKey = @ForeignKey (name = "utilisateur_id_service_fk"))
-	@JsonView(Views.CongeWithDemandeur.class)
+	@JsonView(Views.Common.class)
 	private Service service;
 	
 	@ManyToOne()

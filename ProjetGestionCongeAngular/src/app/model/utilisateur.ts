@@ -46,6 +46,14 @@ export class Utilisateur {
   }
 
   /**
+   * Getter role
+   * @return {Service }
+   */
+  public get service(): Service {
+    return this._service;
+  }
+
+  /**
    * Setter nom
    * @param {string } value
    */
@@ -75,5 +83,13 @@ export class Utilisateur {
    */
   public set role(value: EnumRole) {
     this._role = value;
+  }
+
+  /**
+   * Setter role
+   * @param {Service } value
+   */
+  public set service(value: Service) {
+    this._service = value;
   }
 }

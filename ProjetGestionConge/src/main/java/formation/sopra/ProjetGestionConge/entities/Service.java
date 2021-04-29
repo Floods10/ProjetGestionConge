@@ -13,6 +13,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import formation.sopra.ProjetGestionConge.restController.Views;
+
 @Entity
 @Table(name = "service")
 @SequenceGenerator(name = "seqService", sequenceName = "seq_service", initialValue = 100, allocationSize = 1)
@@ -20,12 +24,15 @@ public class Service {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqService")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Column(name = "nom", length = 100, unique = false, nullable = false)
+	@JsonView(Views.Common.class)
 	private String nom;
 	
 	@Column(name = "adresse", length = 200, unique = true, nullable = true)
+	@JsonView(Views.Common.class)
 	private String adresse;
 	
 	@OneToOne()
