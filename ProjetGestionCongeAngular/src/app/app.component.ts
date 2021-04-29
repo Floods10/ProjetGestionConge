@@ -23,4 +23,9 @@ export class AppComponent {
     localStorage.clear();
     this.router.navigate(['../home']);
   }
+  isVisible(): boolean {
+    if(localStorage.getItem('role')=='ROLE_MANAGER'){
+      return true; }
+      return false;
+   }
 }

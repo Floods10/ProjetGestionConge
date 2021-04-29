@@ -11,15 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  nom = '';
   utilisateur: Utilisateur = new Utilisateur();
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void { }
 
-  isVisible(): boolean {
-    return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? true : true;
-  }
+  // isVisible(): boolean {
+  //   return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? true : true;
+  // }
 
   public get login(): string {
     return localStorage.getItem('nom');

@@ -45,7 +45,7 @@ public class Utilisateur {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
-	@JsonView(Views.CongeWithDemandeur.class)
+	@JsonView(Views.Common.class)
 	private Role role;
 	
 	@ManyToOne()

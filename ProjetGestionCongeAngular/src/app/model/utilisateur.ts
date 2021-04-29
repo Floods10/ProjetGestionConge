@@ -8,7 +8,7 @@ export class Utilisateur {
     private _nom?: string,
     private _mail?: string,
     private _mdp?: string,
-    private _role?: EnumRole,
+    private _role?: string,
     private _service?: Service,
     private _manager?: Utilisateur,
     private _conge?: Conge[]
@@ -48,9 +48,9 @@ export class Utilisateur {
 
   /**
    * Getter role
-   * @return {EnumRole }
+   * @return {string }
    */
-  public get role(): EnumRole {
+  public get role(): string {
     return this._role;
   }
 
@@ -97,9 +97,9 @@ export class Utilisateur {
 
   /**
    * Setter role
-   * @param {EnumRole } value
+   * @param {string } value
    */
-  public set role(value: EnumRole) {
+  public set role(value: string) {
     this._role = value;
   }
 

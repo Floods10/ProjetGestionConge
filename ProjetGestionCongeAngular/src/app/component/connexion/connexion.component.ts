@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Utilisateur } from './../../model/utilisateur';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EnumRole } from './../../model/enum-role.enum';
 import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -38,6 +39,7 @@ export class ConnexionComponent implements OnInit {
             localStorage.setItem('id', user.id.toString());
             localStorage.setItem('nom', user.nom);
             localStorage.setItem('mail', user.mail);
+            localStorage.setItem('role', user.role);
           });
 
         this.router.navigate(['/home']);

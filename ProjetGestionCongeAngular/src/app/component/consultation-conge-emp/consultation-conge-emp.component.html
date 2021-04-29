@@ -21,7 +21,7 @@
 </div>
 
 <div class="card">
-  <h2>Validation des congés</h2>
+  <h2>Ajout d'un congé</h2>
   <div class="card-header row">
     <div class="col-1">Date de la demande:</div>
     <input
@@ -51,15 +51,9 @@
 
 <div class="card">
   <div class="card-header row">
-    <div class="col-1">Nombre de jours:</div>
-    <input
-      id="duree"
-      type="number"
-      [(ngModel)]="duree"
-      class="form-control col-1"
-    />
+
     <div class="col-1">Type de congés:</div>
-    <div class="col-4">
+    <div class="col-2">
       <select [(ngModel)]="enumTypeConge">
         <option
           *ngFor="let typeconge of enumTypeConge | keyvalue"
@@ -76,16 +70,18 @@
       [(ngModel)]="motifConge"
       class="form-control col-4"
     />
+    <div class="col-1"></div>
+    <button class="btn btn-outline-info col-1" (click)="save()">
+      enregistrer
+    </button>
+    <a class="btn btn-outline-warning col-1" (click)="annulerChamp()">annuler</a>
   </div>
 </div>
 
-<div class="row">
-  <button class="btn btn-outline-info col-1" (click)="save()">
-    enregistrer
-  </button>
-  <a class="btn btn-outline-warning col-1" (click)="annulerChamp()">annuler</a>
-</div>
-<br />
+
+
+
+
 
 <div class="card">
   <div class="card-header">
