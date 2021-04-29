@@ -1,1 +1,60 @@
-<p>consultation-conge-emp works!</p>
+<h1 class="text-center">Vos conges</h1>
+
+<div class="card">
+  <div class="card-header">
+    <h5>Ensemble des conges</h5>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <tr>
+        <th>Date demande</th>
+        <th>Période</th>
+        <th>Type</th>
+        <th>Service</th>
+        <th>Motif</th>
+        <th>Statut</th>
+      </tr>
+      <tr *ngFor="let conge of conges">
+        <td>
+          <input type="date" value="{{ conge.dateDemande }}" disabled />
+        </td>
+        <td>
+          <input type="date" value="{{ conge.dateDebut }}" disabled />
+          <br />
+          <input type="date" value="{{ conge.dateFin }}" disabled />
+        </td>
+        <td class="">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="{
+              'btn-primary': conge.typeConge == 'congePaye',
+              'btn-secondary': conge.typeConge == 'congeSansSolde',
+              'btn-light': conge.typeConge == 'absenceAutorisee',
+              'btn-info': conge.typeConge == 'absenceJustifiee'
+            }"
+          >
+            {{ conge.typeConge }}
+          </button>
+        </td>
+        <td>{{ conge.demandeur.service.nom }}</td>
+        <td>
+          <input type="text" value="{{ conge.motifConge }}" disabled />
+        </td>
+        <td class="">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="{
+              'btn-warning': conge.statutDemande == 'attente',
+              'btn-success': conge.statutDemande == 'accepte',
+              'btn-danger': conge.statutDemande == 'refuse'
+            }"
+          >
+            {{ conge.statutDemande }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
