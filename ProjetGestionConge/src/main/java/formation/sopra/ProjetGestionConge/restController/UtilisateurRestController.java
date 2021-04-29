@@ -28,7 +28,6 @@ public class UtilisateurRestController {
 	@GetMapping("/{mail}")
 	@JsonView(Views.Common.class)
 	public Optional<Utilisateur> getByMail(@PathVariable("mail") String mail) {
-		
 		return utilisateurRepository.findByMail(mail);
 	}
 }
