@@ -24,9 +24,14 @@ export class ConnexionComponent implements OnInit {
   ngOnInit(): void {}
 
   send() {
-    console.log(this.utilisateur);
     this.authentificationService.getAuthApi(this.utilisateur).subscribe(
       (connected) => {
+        this.message = null;
+        localStorage.setItem(
+          'auth',
+          btoa(this.utilisateur.mail + ':' + this.utilisateur.mdp)
+        );
+
         this.authentificationService
           .getConnectedUser(this.utilisateur)
           .subscribe((user) => {
@@ -34,12 +39,13 @@ export class ConnexionComponent implements OnInit {
             localStorage.setItem('nom', user.nom);
             localStorage.setItem('mail', user.mail);
           });
-        this.message = null;
+
         this.router.navigate(['/home']);
       },
       (error) => {
         this.message = "Erreur d'authentification";
       }
     );
+
   }
 }

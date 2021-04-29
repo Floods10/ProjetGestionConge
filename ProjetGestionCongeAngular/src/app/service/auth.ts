@@ -26,9 +26,10 @@ export class AuthentificationService {
   }
 
   public getConnectedUser(utilisateur: Utilisateur): Observable<Utilisateur> {
+    const texte: string = `${utilisateur.mail}:${utilisateur.mdp}`;
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      authorization: `Basic ${btoa(`${utilisateur.mail}:${utilisateur.mdp}`)}`,
+      authorization: `Basic ${btoa(texte)}`,
     });
     return this.http.get<Utilisateur>(
       'http://127.0.0.1:8080/conges/api/utilisateur/' + utilisateur.mail,

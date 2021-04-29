@@ -1,27 +1,44 @@
-<div>
-  mon site
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-    <b>MENU</b>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">
+    <img src="/assets/logoSopra.png" alt="" width="50" height="40" class="d-inline-block align-text-top">
+    Menu congés
+  </a>
 
-      <ul class="navbar-nav">
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/demande-conge" routerLinkActive="active">Nouveau congé</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/consultation-conge-emp" routerLinkActive="active">Voir ses congés</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/validation-conge"  routerLinkActive="active">Validation demandes en attentes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/consultation-conge-mang" routerLinkActive="active">Consultation conges employes</a>
+      </li>
+      <ng-container *ngIf="!utilisateur; else auth">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/connexion" routerLinkActive="active">Connexion</a>
+          <button class="btn btn-outline-success me-2" type="button"(click)="log()" >Connexion</button>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/demande-conge" routerLinkActive="active">Nouveau congé</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/consultation-conge-emp" routerLinkActive="active">Voir ses congés</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/validation-conge"  routerLinkActive="active">Validation des demandes en attentes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/consultation-conge-mang" routerLinkActive="active">Consultaion conges des employes</a>
-        </li>
+     </ng-container>
+     <ng-template #auth>
+      <li class="nav-item">
+        <button class="btn btn-outline-danger" type="button" (click)="logout()">Deconnexion</button>
+      </li>
+     </ng-template>
+
     </ul>
   </div>
-  </nav>
-</div>
+</nav>
+
 <router-outlet></router-outlet>

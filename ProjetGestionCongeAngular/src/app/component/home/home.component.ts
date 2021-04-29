@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.nom = params.nom;
+      this.nom = localStorage.getItem('nom');
     });
   }
 
@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit {
 
   isVisible(): boolean {
     return this.utilisateur.role == EnumRole.ROLE_EMPLOYE  ? true : true;
+  }
+
+  public get login(): string {
+    return localStorage.getItem('nom');
   }
 
 }
