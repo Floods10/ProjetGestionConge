@@ -1,3 +1,6 @@
 export enum EnumTypeConge {
-  congesPayes, congesSansSoldes, absenceAutorisee, absenceJustifiee
+  congePaye,
+  congeSansSolde,
+  absenceAutorisee,
+  absenceJustifiee,
 }

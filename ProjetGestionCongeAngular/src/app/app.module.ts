@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ConnexionComponent } from './component/connexion/connexion.component';
@@ -13,7 +14,6 @@ import { HomeComponent } from './component/home/home.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +22,15 @@ import { routes } from './routes';
     ValidationCongeComponent,
     ConsultationCongeEmpComponent,
     ConsultationCongeMangComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
