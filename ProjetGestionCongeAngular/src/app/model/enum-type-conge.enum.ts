@@ -1,6 +1,6 @@
 export enum EnumTypeConge {
-  congePaye,
-  congeSansSolde,
-  absenceAutorisee,
-  absenceJustifiee,
+  congePaye = "congePaye",
+  congeSansSolde = "congeSansSolde",
+  absenceAutorisee = "absenceAutorisee",
+  absenceJustifiee = "absenceJustifiee",
 }
