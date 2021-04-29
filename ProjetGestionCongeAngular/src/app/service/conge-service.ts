@@ -23,8 +23,8 @@ export class CongeService {
   public getById(id: number): Observable<Conge> {
     return this.http.get<Conge>(CongeService.URL + '/' + id);
   }
-  public getCongeByDemandeur(id: number): Observable<Conge> {
-    return this.http.get<Conge>(CongeService.URL + '/' + id + '/demandeur');
+  public getCongeByDemandeur(id: number): Observable<Conge[]> {
+    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/demandeur');
   }
   public getCongeEntreDeuxDates(
     dateDebut: Date,

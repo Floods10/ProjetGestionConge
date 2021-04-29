@@ -10,5 +10,4 @@ import formation.sopra.ProjetGestionConge.entities.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer>{
 
 	Optional<Utilisateur> findByMail(String mail);
-
 }

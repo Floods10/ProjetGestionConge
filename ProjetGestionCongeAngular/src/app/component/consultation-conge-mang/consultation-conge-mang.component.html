@@ -31,6 +31,7 @@
         <th>Date demande</th>
         <th>Période</th>
         <th>Type</th>
+        <th>Service</th>
         <th>Motif</th>
         <th>Statut</th>
       </tr>
@@ -58,15 +59,16 @@
             type="button"
             class="btn"
             [ngClass]="{
-              'btn-primary': conge.typeConge == enumTypeConge.congePaye,
-              'btn-secondary': conge.typeConge == enumTypeConge.congeSansSolde,
-              'btn-light': conge.typeConge == enumTypeConge.absenceAutorisee,
-              'btn-info': conge.typeConge == enumTypeConge.absenceJustifiee
+              'btn-primary': conge.typeConge == 'congePaye',
+              'btn-secondary': conge.typeConge == 'congeSansSolde',
+              'btn-light': conge.typeConge == 'absenceAutorisee',
+              'btn-info': conge.typeConge == 'absenceJustifiee'
             }"
           >
             {{ conge.typeConge }}
           </button>
         </td>
+        <td>{{ conge.demandeur.service.nom }}</td>
         <td>
           <input type="text" value="{{ conge.motifConge }}" disabled />
         </td>
