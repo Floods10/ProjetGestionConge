@@ -19,7 +19,9 @@ export class CongeService {
     return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/manager');
   }
   public getByManagerAttente(id: number): Observable<Conge[]> {
-    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/managerAttente');
+    return this.http.get<Conge[]>(
+      CongeService.URL + '/' + id + '/managerAttente'
+    );
   }
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(CongeService.URL + '/' + id);
@@ -32,7 +34,9 @@ export class CongeService {
   }
 
   public getCongeByDemandeurAttente(id: number): Observable<Conge[]> {
-    return this.http.get<Conge[]>(CongeService.URL + '/' + id + '/demandeurAttente');
+    return this.http.get<Conge[]>(
+      CongeService.URL + '/' + id + '/demandeurAttente'
+    );
   }
   public getCongeEntreDeuxDates(
     dateDebut: Date,
@@ -51,7 +55,7 @@ export class CongeService {
       CongeService.URL + '/' + id + '/' + dateDebut + '/' + dateFin + '/manager'
     );
   }
-  public postConge(conge: Conge): Observable<Conge> {
+  public postConge(conge: Conge, typeC: string): Observable<Conge> {
     const congeFormate = {
       demandeur: {
         id: conge.demandeur.id,
@@ -60,7 +64,7 @@ export class CongeService {
       dateDebut: conge.dateDebut,
       dateFin: conge.dateFin,
       duree: conge.duree,
-      typeConge: conge.typeConge,
+      typeConge: typeC,
       motifConge: conge.motifConge,
       statutDemande: conge.statutDemande,
       commentaireSiRefuse: conge.commentaireSiRefuse,
@@ -70,14 +74,13 @@ export class CongeService {
   public patchConge(id: number, body: Map<string, Object>): Observable<Conge> {
     return this.http.patch<Conge>(CongeService.URL + '/' + id, body);
   }
-  public validerConge(id : number): Observable<Conge> {
-    return this.http.put<Conge>(
-      CongeService.URL + '/' + id +'/validee',{});
+  public validerConge(id: number): Observable<Conge> {
+    return this.http.put<Conge>(CongeService.URL + '/' + id + '/validee', {});
   }
 
-  public refuserConge(id : number,com : string): Observable<Conge> {
-    return this.http.put<Conge>(
-      CongeService.URL + '/' + id +'/refus',{com});
+  public refuserConge(id: number, com: string): Observable<Conge> {
+    return this.http.put<Conge>(CongeService.URL + '/' + id + '/refus', {
+      com,
+    });
   }
-  }
-
+}

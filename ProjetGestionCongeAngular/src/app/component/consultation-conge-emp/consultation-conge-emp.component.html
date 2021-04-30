@@ -51,13 +51,12 @@
 
 <div class="card">
   <div class="card-header row">
-
     <div class="col-1">Type de congés:</div>
     <div class="col-2">
-      <select [(ngModel)]="enumTypeConge">
+      <select [(ngModel)]="newConge.typeConge" class="form-control">
         <option
           *ngFor="let typeconge of enumTypeConge | keyvalue"
-          [ngValue]="typeconge.key"
+          [ngValue]="typeconge"
         >
           {{ typeconge.value }}
         </option>
@@ -74,14 +73,11 @@
     <button class="btn btn-outline-info col-1" (click)="save()">
       enregistrer
     </button>
-    <a class="btn btn-outline-warning col-1" (click)="annulerChamp()">annuler</a>
+    <a class="btn btn-outline-warning col-1" (click)="annulerChamp()"
+      >annuler</a
+    >
   </div>
 </div>
-
-
-
-
-
 
 <div class="card">
   <div class="card-header">

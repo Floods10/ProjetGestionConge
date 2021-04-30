@@ -106,8 +106,9 @@ export class ConsultationCongeEmpComponent implements OnInit {
     }
 
     //this.newConge.duree = 'this.duree';
-    this.newConge.typeConge = this.enumTypeConge.absenceAutorisee;
-    if ((this.newConge.motifConge = this.motifConge)) {
+    //this.newConge.typeConge = this.enumTypeConge.absenceAutorisee;
+
+    if (this.motifConge) {
       this.newConge.motifConge = this.motifConge;
     } else {
       this.newConge.motifConge = '';
@@ -116,9 +117,17 @@ export class ConsultationCongeEmpComponent implements OnInit {
     this.newConge.statutDemande = this.enumStatutDemande.attente;
     this.newConge.commentaireSiRefuse = '';
 
-    this.congeService.postConge(this.newConge).subscribe();
+    if (this.newConge.typeConge !== 'congePaye') {
+      console.log(this.newConge.typeConge);
+      this.congeService
+        .postConge(this.newConge, this.newConge.typeConge['key'])
+        .subscribe();
+    } else {
+      console.log('!!');
+      this.congeService.postConge(this.newConge, 'congePaye').subscribe();
+    }
 
-    location.reload();
+    //location.reload();
   }
 
   public list() {
