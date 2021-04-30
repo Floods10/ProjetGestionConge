@@ -127,7 +127,7 @@ export class ConsultationCongeEmpComponent implements OnInit {
       this.congeService.postConge(this.newConge, 'congePaye').subscribe();
     }
 
-    //location.reload();
+    location.reload();
   }
 
   public list() {
