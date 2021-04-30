@@ -93,17 +93,9 @@ export class ConsultationCongeEmpComponent implements OnInit {
 
     this.newConge.dateDemande = new Date();
 
-    if (this.newConge.dateDebut) {
-      this.newConge.dateDebut = this.dateDebut;
-    } else {
-      this.newConge.dateDebut = new Date();
-    }
+    this.newConge.dateDebut = this.dateDebut;
 
-    if (this.newConge.dateFin) {
-      this.newConge.dateFin = this.dateFin;
-    } else {
-      this.newConge.dateFin = new Date();
-    }
+    this.newConge.dateFin = this.dateFin;
 
     //this.newConge.duree = 'this.duree';
     //this.newConge.typeConge = this.enumTypeConge.absenceAutorisee;
